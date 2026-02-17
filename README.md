@@ -19,4 +19,18 @@
 ## B) NgspiceSky130 - Day 1 - Basics of NMOS Drain current (Id) vs Drain-to-source Voltage (Vds)
 ### Introduction to Circuit Design and SPICE simulations
 ### L1: Why do we need SPICE simulations?
+**CMOS Inverter Basics**
+- CMOS inverter circuit with PMOS and NMOS
 
+**Delay Concepts**
+- Delay depends on input slew and output load
+- Combined input slew & output load -> delay table value
+- Each transistor (PMOS & NMOS) is unique, with different delay values
+- Buffer sizing (W & L) determines current and delay behavior. Buffer differentiation is part of circuit design.
+- Delay Table
+
+The delay table shows the delay for combinations of:
+- Input slew values
+- Output load capacitances
+
+=> Width (W) and length (L) decide the Drive current (I) and the resulting timing curve
