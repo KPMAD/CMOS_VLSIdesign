@@ -137,3 +137,6 @@ Some of the calculations are in the image below.
 - The file from which model parameters are taken is generally a .mod file. Whether NMOS or PMOS, those parameters are extracted from the .mod file during simulation.
 - Here, SPICE simulations will help us sweep the voltage levels in the required range using some commands.
 
+### L4: First SPICE simulation
+- As Vt is around 0.55V, so for 0.2V and 0.4V there is no curve observed.
+![WhatsApp Image 2026-02-17 at 10 41 58 PM](https://github.com/user-attachments/assets/11843c0f-e384-4f44-8c8b-99740f523a55)
