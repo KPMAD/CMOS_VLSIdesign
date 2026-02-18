@@ -125,18 +125,65 @@ Some of the calculations are in the image below.
 ![WhatsApp Image 2026-02-17 at 4 32 12 PM](https://github.com/user-attachments/assets/6e2cb116-cd94-4d7b-bd15-656d23016795)
 <img width="2880" height="1800" alt="Screenshot 2026-02-17 163237" src="https://github.com/user-attachments/assets/c5b3903d-8648-489f-beba-fee955665ef5" />
 
-### L2: Circuit description in SPICE syntax
+### L2: Circuit description in SPICE syntax  **********
 - Representation of the MOSFET in the form of nodes and writing the code.
 <img width="2028" height="591" alt="image" src="https://github.com/user-attachments/assets/23fe03e6-4394-4cc0-b85a-5497db610352" />
 
 - Technology File syntax for the simulations
 ![WhatsApp Image 2026-02-17 at 4 47 40 PM](https://github.com/user-attachments/assets/30a7e46e-aa5e-4b43-ba76-18909e184920)
 
-### L3: Define technology parameters
+### L3: Define technology parameters  **********
 - We have model parameters that we keep in the simulation file. Those depend on the device's technology node.
 - The file from which model parameters are taken is generally a .mod file. Whether NMOS or PMOS, those parameters are extracted from the .mod file during simulation.
 - Here, SPICE simulations will help us sweep the voltage levels in the required range using some commands.
 
-### L4: First SPICE simulation
+### L4: First SPICE simulation  **********
 - As Vt is around 0.55V, so for 0.2V and 0.4V there is no curve observed.
 ![WhatsApp Image 2026-02-17 at 10 41 58 PM](https://github.com/user-attachments/assets/11843c0f-e384-4f44-8c8b-99740f523a55)
+
+### SPICE simulation for lower nodes and velocity saturation effect
+### L1: SPICE simulation for lower nodes  **********
+- We can see the behaviour of the transistor in the linear regime, which is completely different from the saturation regime due to the pinch-off phenomenon. Generally, it occurs at higher V<sub>ds</sub>.
+
+- We also see that in the saturation region, it seems constant, but it is not. It varies as a function of λ*V<sub>ds</sub>. 
+<img width="2177" height="1339" alt="image" src="https://github.com/user-attachments/assets/072273b8-4bb5-4246-8fc3-2d1f68e0fdf3" />
+
+### L2: Drain current vs gate voltage for long and short channel devices  **********
+- Simulation for W = 0.375u, L = 0.25u, W/L = 1.5 and W=1.8u, L=1.2u, W/L = 1.5
+
+| W=0.375u and L=0.25u | W=1.8u and L=1.2u |
+|---|---|
+|<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/79a88d00-7b31-499f-912e-1993c1161173" /> | <img width="400" height="400" alt="Screenshot 2026-02-18 151631" src="https://github.com/user-attachments/assets/084e9800-e549-46a2-a03e-20544fbdc411" /> |
+|<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/b933fcd1-c197-4ebc-b73f-50896ce5646d" /> |<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/959a0ec5-0a0a-4635-9e2f-4215fa929af8" /> | 
+
+- We can see the Quadratic dependence of Vds in a long-channel MOSFET and the Linear dependence of Vds in a short-channel MOSFET.
+- Any device below 0.25u length is considered a short-channel MOSFET.
+- We can also see the Velocity saturation.
+
+### L3: Velocity saturation at lower and higher electric fields  **********
+<img width="2200" height="1000" alt="image" src="https://github.com/user-attachments/assets/bad42649-3531-4826-89d6-a9e28326e1ff" />
+<img width="2138" height="685" alt="image" src="https://github.com/user-attachments/assets/94446fa2-5d67-4481-bd96-670057b1e63d" />
+<img width="1080" height="1529" alt="image" src="https://github.com/user-attachments/assets/5abb1ebf-17e9-44ca-8b6d-5eb7a0d97743" />
+
+### L4: Velocity saturation drain current model  **********
+- We know that Vdsat is a technology parameter that we will get from Fab.
+
+- Substituting Vgs - Vt in the simpler equation. Means Vgt is Minimum and behaves in a saturation regime.
+<img width="300" height="60" alt="image" src="https://github.com/user-attachments/assets/ecc05bff-ccb7-450f-9c74-8e2004e8fbdc" />
+
+- When Vds is Minimum, it behaves in a resistive regime.
+<img width="300" height="55" alt="image" src="https://github.com/user-attachments/assets/04057e84-8640-4380-b7d5-48b0b246f961" />
+
+- We can have Vdsat minimum for lower nodes devices, so that is only applicable to devices length <250nm.
+<img width="1000" height="120" alt="image" src="https://github.com/user-attachments/assets/103afe49-6210-42d7-98a0-4fb1e983cee2" />
+
+### L5: Labs Sky130 Id-Vgs  **********
+- Id vs Vdd
+<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/6a24c400-e613-467f-b8af-aee0500276f7" />
+<img width="1206" height="757" alt="image" src="https://github.com/user-attachments/assets/dfe506ed-786e-46d2-91e6-6df8d67ab369" />
+
+### L6: Labs Sky130 Id-Vt
+- Id vs Vgs
+<img width="500" height="460" alt="image" src="https://github.com/user-attachments/assets/4e38e2d0-9849-4a07-8d02-f1ae0d8dc8d4" />
+Vthreshold = 0.783 V
+
