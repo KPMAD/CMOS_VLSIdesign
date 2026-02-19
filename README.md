@@ -187,3 +187,14 @@ Some of the calculations are in the image below.
 <img width="500" height="460" alt="image" src="https://github.com/user-attachments/assets/4e38e2d0-9849-4a07-8d02-f1ae0d8dc8d4" />
 Vthreshold = 0.783 V
 
+### CMOS voltage transfer characteristics (VTC)
+### L1: MOSFET as a switch
+- By regulating the gate voltage, a MOSFET employed as a switch can function in two primary states: OFF (open switch) and ON (closed switch). To regulate current flow, we drive it fully ON or fully OFF rather than using it as an amplifier.
+<img width="2878" height="1710" alt="image" src="https://github.com/user-attachments/assets/eda18bd7-6db4-4e5c-922a-bece85c8ba20" />
+
+### L2: Introduction to standard MOS voltage current parameters
+- CMOS in which the output node and the load capacitor C L are controlled by complementary switches made of PMOS and NMOS.
+
+When Vin = Vdd (input HIGH), the NMOS and PMOS behave like complementary switches, as shown in the middle figure. For the NMOS, the gate-to-source voltage is Vdsn = Vin - Vss = Vdd​, which is greater than the threshold voltage, so the NMOS turns ON and behaves like a closed switch with a small equivalent resistance Rn. A drain–source current Idsn flows through the NMOS to ground, providing a discharge path for the output node. At the same time, for the PMOS, the gate and source are both near Vdd, so VGSP≈0, which is below its threshold magnitude, turning the PMOS OFF and making it act like an open switch. Therefore, there is no path from Vdd to the output. As a result, the load capacitor CL discharges through the NMOS, and Vout becomes 0.
+
+<img width="2663" height="1356" alt="image" src="https://github.com/user-attachments/assets/e77e7765-c7d9-4180-956b-e1e1fdb80178" />
