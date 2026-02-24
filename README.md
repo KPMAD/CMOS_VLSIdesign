@@ -315,7 +315,72 @@ Following that Vin = Vout straight line intersaction will be our switching volta
 - Now as we know that for higher PMOS width device, it have higher switching voltage and depending on the w/L ratio switching voltage changes.
 - We also get to know that there is the critical area in Vin vs Vout curve we view, where the leakage of the device is dependent on.
 
-### L2 Analytical expression of Vm as a function of (W/L)p and (W/L)n
+### L2: Analytical expression of Vm as a function of (W/L)p and (W/L)n
 Current eveluation at Vin=Vout or Vgs=Vds
 - IdsP = - IdsN
 - Idsp + IdsN = 0
+
+Further deriving the expression as attached in image.
+<img width="900" height="390" alt="image" src="https://github.com/user-attachments/assets/ead660cf-8442-4e29-8cd5-b30cb098e447" />
+![WhatsApp Image 2026-02-24 at 10 26 30 PM](https://github.com/user-attachments/assets/31227712-6e92-4d42-b905-33d10fe404e5)
+
+<img width="867" height="271" alt="image" src="https://github.com/user-attachments/assets/f14908b8-4e8a-4690-89f6-90991cbf167f" />
+
+- kp and kn are gain factor
+- R is the process transconductance
+
+### L3: Analytical expression of (W/L)p and (W/L)n as a function of Vm
+![WhatsApp Image 2026-02-24 at 10 43 29 PM](https://github.com/user-attachments/assets/8c062c32-a186-4959-a1ed-ad427d6ededc)
+
+### L4: Static and dynamic simulation of CMOS inverter
+- Here we have similar calculations as in Lecture 3 of Day 3. After transient calculations by giving pulse in place of DC we calculated time delay.
+<img width="900" height="450" alt="image" src="https://github.com/user-attachments/assets/cf6b04e9-b668-4c42-9854-d2d2c72bb573" />
+
+### L5: Static and dynamic simulation of CMOS inverter with increased PMOS width
+- wp=1, Lp=0.25, Wn=1, Ln=0.25
+- Rise delay = 2.6694 - 2.1506 = 0.5188 ns
+- Fall delay = 4.2116 - 4.0502 = 0.1614 ns
+- Vm = 0.65V
+<img width="400" height="380" alt="image" src="https://github.com/user-attachments/assets/c7048e71-5126-40a6-904b-545ce39188e8" />
+
+<img width="400" height="385" alt="image" src="https://github.com/user-attachments/assets/79b99a09-74c9-443c-8e14-57c0995fe0bc" />
+
+- wp=2, Lp=0.25, Wn=1, Ln=0.25
+- Rise delay = 2.4270 - 2.1495 = 0.2775 ns
+- Fall delay = 4.2163 - 4.0494 = 0.1669 ns
+- Vm = 0.684V
+<img width="400" height="385" alt="image" src="https://github.com/user-attachments/assets/f6fd9c23-a135-4ed9-8f7c-8404bdaeda92" />
+
+- wp=3, Lp=0.25, Wn=1, Ln=0.25
+- Rise delay = 2.3473 - 2.1493 = 0.198 ns
+- Fall delay = 4.2219 - 4.0489 = 0.173 ns
+- Vm = 0.71V
+<img width="400" height="360" alt="image" src="https://github.com/user-attachments/assets/a28f8e95-55b0-49fa-899d-5409ffdc862f" />
+
+<img width="400" height="375" alt="image" src="https://github.com/user-attachments/assets/aaa6caf4-3b2d-4327-959e-efe62d7330f9" />
+
+- wp=4, Lp=0.25, Wn=1, Ln=0.25
+- Rise delay = 2.3090 - 2.1494 = 0.1596 ns
+- Fall delay = 4.2236 - 4.0493 = 0.1743 ns
+- Vm = 0.722V
+<img width="400" height="360" alt="image" src="https://github.com/user-attachments/assets/43818e49-df8b-435c-b7d7-c7e508895006" />
+
+<img width="400" height="370" alt="image" src="https://github.com/user-attachments/assets/abefd56c-d744-4bf0-997e-9a51bab1f2f9" />
+
+- wp=5, Lp=0.25, Wn=1, Ln=0.25
+- Rise delay = 2.2854 - 2.1505 = 0.1349 ns
+- Fall delay = 4.2264 - 4.0505 = 0.1759 ns
+- Vm = 0.73V
+<img width="400" height="360" alt="image" src="https://github.com/user-attachments/assets/16d81640-4230-4af8-8917-0d2065e688c2" />
+
+<img width="400" height="370" alt="image" src="https://github.com/user-attachments/assets/c34ec3f0-db25-4e99-9358-0f2ebf5aeac6" />
+
+### L6: Applications of CMOS inverter in clock network and STA
+<img width="1000" height="575" alt="image" src="https://github.com/user-attachments/assets/de79aedd-6a2f-400b-9a48-4a3abfb4b47d" />
+
+- We are checking the point where our rise and fall delay is same. Here we can see the buffer with same R to have similar delay in rise and fall.
+
+## NgspiceSky130 - Day 4 - CMOS Noise Margin robustness evaluation
+### Static behavior evaluation – CMOS inverter robustness – Noise margin
+
+### 36-L1 Introduction to noise margin
