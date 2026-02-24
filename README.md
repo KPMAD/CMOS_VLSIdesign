@@ -198,3 +198,124 @@ Vthreshold = 0.783 V
 When Vin = Vdd (input HIGH), the NMOS and PMOS behave like complementary switches, as shown in the middle figure. For the NMOS, the gate-to-source voltage is Vdsn = Vin - Vss = Vdd​, which is greater than the threshold voltage, so the NMOS turns ON and behaves like a closed switch with a small equivalent resistance Rn. A drain–source current Idsn flows through the NMOS to ground, providing a discharge path for the output node. At the same time, for the PMOS, the gate and source are both near Vdd, so VGSP≈0, which is below its threshold magnitude, turning the PMOS OFF and making it act like an open switch. Therefore, there is no path from Vdd to the output. As a result, the load capacitor CL discharges through the NMOS, and Vout becomes 0.
 
 <img width="2663" height="1356" alt="image" src="https://github.com/user-attachments/assets/e77e7765-c7d9-4180-956b-e1e1fdb80178" />
+
+### L3: PMOS/NMOS drain current v/s drain voltage
+- Because the source is grounded in NMOS, the analysis is straightforward: the input voltage is directly equal to the gate-to-source voltage, and the output voltage is equal to the drain-to-source voltage.So, VGSN​ = Vin
+
+- In PMOS, the drain current flows in the opposite direction from NMOS. In relation to NMOS current, the PMOS drain current appears negative because the selected reference direction is negative.
+<img width="350" height="350" alt="image" src="https://github.com/user-attachments/assets/eb3a1413-95dd-4f70-a2e1-6747f9ee8517" />
+
+- The transistor switches on and the current rises when the gate voltage is beyond the threshold. The drain current increases further as the gate voltage is raised. Both linear (triode) and saturation areas are seen in the characteristic curve.
+<img width="350" height="350" alt="image" src="https://github.com/user-attachments/assets/1775a901-7829-4b70-bae4-6a3b5bf2696b" />
+
+- PMOS has the same behavior, however, with the opposite voltage polarity. Because the voltage and current polarities are inverted, the current-voltage curves appear in the negative quadrant.
+<img width="350" height="390" alt="image" src="https://github.com/user-attachments/assets/55c4b633-b0cc-4884-82e9-0234b682172a" />
+
+### L4: Step1 – Convert PMOS gate-source-voltage to Vin
+- Only the input voltage (Vin) and output voltage (Vout) matter in digital circuit design. Internal node voltages, such as drain-to-source or gate-to-source voltages, are removed from the final modeling as they are intermediate variables.
+
+Assuming that our device is a Long Channel.
+- Vin​ = VGSP​ + VDD
+- IdsP = -IdsN
+- VdsP = Vout - Vdd​
+<img width="400" height="325" alt="image" src="https://github.com/user-attachments/assets/bd150687-d26b-4850-930c-241a97420d24" />
+
+<img width="700" height="350" alt="image" src="https://github.com/user-attachments/assets/255909c5-5712-44ba-bc1c-de4e610ce6ff" />
+
+- The curves are adjusted to match the actual input voltage levels rather than being plotted against internal voltages. As a result, the model helps in the study of digital circuits and the determination of Voltage Transfer Characteristics (VTC), which subsequently helps in delay analysis.
+
+### L5: Step2 & Step3 – Convert PMOS and NMOS drain-source-voltage to vout
+- Steps 2 and 3 for PMOS
+Vgsp is converted into Vin. Our approach is to convert Vdsp and the current into Vout and the current, respectively.
+- Equation is VdsP = Vout - VDD, so by adding VDD, we get the Vout.
+<img width="900" height="275" alt="image" src="https://github.com/user-attachments/assets/b35e5984-d3fb-47e5-8543-4c65212a8194" />
+
+- By the graph, we can conclude that when our Vout = 0, it means our Capacitor is completely discharged, and when Vout = Max, which here is 2V, it means the Capacitor is completely charged, and the charging current is zero.
+
+Equation for the relation of internal voltage and current in NMOS
+- VgsN = Vin - Vss = Vin
+- VdsN = Vout
+
+- NMOS load curve creation
+<img width="900" height="430" alt="image" src="https://github.com/user-attachments/assets/3d6dcf6d-9512-4773-b651-3642723611a3" />
+
+- Load Curves of Both PMOS and NMOS in CMOS
+<img width="900" height="295" alt="image" src="https://github.com/user-attachments/assets/1e7fc827-0af2-48b1-a7ad-cef66c6e7672" />
+
+### L6: Step 4 – Merge PMOS – NMOS load curves and plot VTC
+- Superimpose the Load curve of NMOS and PMOS to get the relation between Vin and Vout of the CMOS device.
+<img width="400" height="300" alt="image" src="https://github.com/user-attachments/assets/bb87eb54-4670-45bb-97e9-b8528d1488e0" />
+
+- Getting the plot between Vin and Vout by connecting the interaction points, and we get the information that PMOS and NMOS are working in which region as well.
+<img width="900" height="285" alt="image" src="https://github.com/user-attachments/assets/050bda8f-1e04-4296-8865-92753ce4c0fc" />
+<img width="400" height="325" alt="image" src="https://github.com/user-attachments/assets/ef9046db-02c8-46fc-8ef5-0f3e1701fae0" />
+
+## NgspiceSky130 - Day 3 - CMOS Switching threshold and dynamic simulations
+
+### Voltage transfer characteristics – SPICE simulations
+### L1: SPICE deck creation for CMOS inverter
+- This sessions explain the spice deck construction
+
+- Spice deck contains
+  1. Circuit connectivity information
+  2. Transistor definitions
+  3. Input and supply voltages
+  4. Load capacitance
+  5. Output observation points
+  
+The deck completely defines the circuit for simulation.
+
+- The substrate affects threshold voltage (body effect), so it is explicitly defined.
+
+Clearly define nodes for SPICE:
+   - *in → Input node*
+   - *out → Output node*
+   - *VDD → Supply node*
+   - *0 → Ground (VSS)*
+- A node is defined as a connection point between components. Proper node naming is essential for correct simulation. It is also important to identify the minimum number of nodes required to connect these devices.
+<img width="300" height="95" alt="image" src="https://github.com/user-attachments/assets/5dbbd082-65af-44ca-8414-e0606791c577" />
+
+<img width="400" height="390" alt="image" src="https://github.com/user-attachments/assets/e0d60e07-c13e-4a64-b69f-00bee243bd87" />
+
+### L2: SPICE simulation for CMOS inverter
+Now netlist is being defined for the full system. It contains PMOS, NMOS, Capacitor Load, Vdd, and Input voltage.
+
+- First, we are defining the components and then the simulation commands.
+
+Taking w=0.9 and L=0.6 for both NMOS and PMOS in the inverter.
+- I have taken from V = 0 to 2.5 with keeping step size of 0.05V.
+<img width="300" height="295" alt="image" src="https://github.com/user-attachments/assets/89eeeb4e-1e34-468e-8650-7280710014a2" />
+
+Taking w=0.9, L=0.6 for NMOS and w=3, L=0.6 for PMOS in the inverter. Here w/L=1.5 for NMOS and w/L=5 for PMOS.
+- I have taken from V = 0 to 2.5 with keeping step size of 0.05V.
+<img width="300" height="295" alt="image" src="https://github.com/user-attachments/assets/132850a4-7b65-4240-bd12-4af269842d74" />
+
+- I had understood from the w and L values that large w and L values mean an increase in capacitance, resulting in an increase in delay. The circuit becomes slower.
+
+### L3: Labs Sky130 SPICE simulation for CMOS
+- Adding the point of switching threshold in this lecture.
+
+For the calculations done in the previous lecture, the approximate value switching threshold = 1.07479V.
+
+- Transient Analysis
+Calculating rise delay and Fall delay, by running ngspice for transient calculation, we can get out and in time, from where we can calculate delay.
+
+<img width="300" height="295" alt="image" src="https://github.com/user-attachments/assets/6dd6a79d-32ec-4718-a8fe-a87aee818b1a" />
+
+- Going to see at the point of 50% voltage rise, at V=0.9, I get delay = 2.4833 - 2.1511 = 0.3321 ns.
+- Similarly for fall delay, I got 4.3360 - 4.0495 = 0.2865 ns
+
+### Static behavior evaluation – CMOS inverter robustness – Switching Threshold
+### L1: Switching Threshold, Vm
+- By comparing those devices from L2: spice simulation for CMOS, we get to know that it is robust device. No matters how large is PMOS and how small is NMOS at low Vin PMOS will be on and high Vin NMOS will be on.
+<img width="900" height="400" alt="image" src="https://github.com/user-attachments/assets/0a819f3d-da22-4445-81df-f8dc87aa7622" />
+<img width="900" height="430" alt="image" src="https://github.com/user-attachments/assets/a4a90b06-16e2-4499-b44b-4703d043357b" />
+
+Following that Vin = Vout straight line intersaction will be our switching voltage point
+- Now as we know that for higher PMOS width device, it have higher switching voltage and depending on the w/L ratio switching voltage changes.
+- We also get to know that there is the critical area in Vin vs Vout curve we view, where the leakage of the device is dependent on.
+
+### L2 Analytical expression of Vm as a function of (W/L)p and (W/L)n
+Current eveluation at Vin=Vout or Vgs=Vds
+- IdsP = - IdsN
+- Idsp + IdsN = 0
