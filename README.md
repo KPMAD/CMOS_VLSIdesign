@@ -16,7 +16,7 @@
 7. Click **Finish**
 8. Now select the VM and click on **Start**.
 
-## B) NgspiceSky130 - Day 1 - Basics of NMOS Drain current (Id) vs Drain-to-source Voltage (Vds)
+## B) Day 1 - Basics of NMOS Drain current (Id) vs Drain-to-source Voltage (Vds)
 ### Introduction to Circuit Design and SPICE simulations
 ### L1: Why do we need SPICE simulations?              **********
 **CMOS Inverter Basics**
@@ -141,6 +141,8 @@ Some of the calculations are in the image below.
 - As Vt is around 0.55V, so for 0.2V and 0.4V there is no curve observed.
 ![WhatsApp Image 2026-02-17 at 10 41 58 PM](https://github.com/user-attachments/assets/11843c0f-e384-4f44-8c8b-99740f523a55)
 
+## C) Day 2 - Velocity saturation and basics of CMOS inverter VTC
+
 ### SPICE simulation for lower nodes and velocity saturation effect
 ### L1: SPICE simulation for lower nodes  **********
 - We can see the behaviour of the transistor in the linear regime, which is completely different from the saturation regime due to the pinch-off phenomenon. Generally, it occurs at higher V<sub>ds</sub>.
@@ -250,7 +252,7 @@ Equation for the relation of internal voltage and current in NMOS
 <img width="900" height="285" alt="image" src="https://github.com/user-attachments/assets/050bda8f-1e04-4296-8865-92753ce4c0fc" />
 <img width="400" height="325" alt="image" src="https://github.com/user-attachments/assets/ef9046db-02c8-46fc-8ef5-0f3e1701fae0" />
 
-## NgspiceSky130 - Day 3 - CMOS Switching threshold and dynamic simulations
+## D) Day 3 - CMOS Switching threshold and dynamic simulations
 
 ### Voltage transfer characteristics – SPICE simulations
 ### L1: SPICE deck creation for CMOS inverter
@@ -298,7 +300,7 @@ Taking w=0.9, L=0.6 for NMOS and w=3, L=0.6 for PMOS in the inverter. Here w/L=1
 For the calculations done in the previous lecture, the approximate value switching threshold = 1.07479V.
 
 - Transient Analysis
-Calculating rise delay and Fall delay, by running ngspice for transient calculation, we can get out and in time, from where we can calculate delay.
+By running ngspice for transient analysis, we can get the rise and fall times, from which we can calculate the delay.
 
 <img width="300" height="295" alt="image" src="https://github.com/user-attachments/assets/6dd6a79d-32ec-4718-a8fe-a87aee818b1a" />
 
@@ -307,33 +309,33 @@ Calculating rise delay and Fall delay, by running ngspice for transient calculat
 
 ### Static behavior evaluation – CMOS inverter robustness – Switching Threshold
 ### L1: Switching Threshold, Vm
-- By comparing those devices from L2: spice simulation for CMOS, we get to know that it is robust device. No matters how large is PMOS and how small is NMOS at low Vin PMOS will be on and high Vin NMOS will be on.
+- By comparing those devices from L2: spice simulation for CMOS, we get to know that it is a robust device. No matter how large PMOS is and how small NMOS is, at low Vin, PMOS will be on, and at high Vin, NMOS will be on.
 <img width="900" height="400" alt="image" src="https://github.com/user-attachments/assets/0a819f3d-da22-4445-81df-f8dc87aa7622" />
 <img width="900" height="430" alt="image" src="https://github.com/user-attachments/assets/a4a90b06-16e2-4499-b44b-4703d043357b" />
 
-Following that Vin = Vout straight line intersaction will be our switching voltage point
-- Now as we know that for higher PMOS width device, it have higher switching voltage and depending on the w/L ratio switching voltage changes.
-- We also get to know that there is the critical area in Vin vs Vout curve we view, where the leakage of the device is dependent on.
+Following that, Vin = Vout straight line intersection will be our switching voltage point
+- Now, as we know that for a higher PMOS width device, it has a higher switching voltage, and depending on the w/L ratio, the switching voltage changes.
+- We also get to know that there is a critical area in the Vin vs Vout curve we view, where the leakage of the device is dependent on.
 
 ### L2: Analytical expression of Vm as a function of (W/L)p and (W/L)n
-Current eveluation at Vin=Vout or Vgs=Vds
+Current evaluation at Vin=Vout or Vgs=Vds
 - IdsP = - IdsN
 - Idsp + IdsN = 0
 
-Further deriving the expression as attached in image.
+Further deriving the expression as attached in the image.
 <img width="900" height="390" alt="image" src="https://github.com/user-attachments/assets/ead660cf-8442-4e29-8cd5-b30cb098e447" />
 ![WhatsApp Image 2026-02-24 at 10 26 30 PM](https://github.com/user-attachments/assets/31227712-6e92-4d42-b905-33d10fe404e5)
 
 <img width="867" height="271" alt="image" src="https://github.com/user-attachments/assets/f14908b8-4e8a-4690-89f6-90991cbf167f" />
 
-- kp and kn are gain factor
+- kp and kn are gain factors
 - R is the process transconductance
 
 ### L3: Analytical expression of (W/L)p and (W/L)n as a function of Vm
 ![WhatsApp Image 2026-02-24 at 10 43 29 PM](https://github.com/user-attachments/assets/8c062c32-a186-4959-a1ed-ad427d6ededc)
 
 ### L4: Static and dynamic simulation of CMOS inverter
-- Here we have similar calculations as in Lecture 3 of Day 3. After transient calculations by giving pulse in place of DC we calculated time delay.
+- Here we have similar calculations as in Lecture 3 of Day 3. After transient calculations with a pulse instead of DC, we calculated the time delay.
 <img width="900" height="450" alt="image" src="https://github.com/user-attachments/assets/cf6b04e9-b668-4c42-9854-d2d2c72bb573" />
 
 ### L5: Static and dynamic simulation of CMOS inverter with increased PMOS width
@@ -378,9 +380,106 @@ Further deriving the expression as attached in image.
 ### L6: Applications of CMOS inverter in clock network and STA
 <img width="1000" height="575" alt="image" src="https://github.com/user-attachments/assets/de79aedd-6a2f-400b-9a48-4a3abfb4b47d" />
 
-- We are checking the point where our rise and fall delay is same. Here we can see the buffer with same R to have similar delay in rise and fall.
+- We are checking the point where our rise and fall delay is the same. Here we can see the buffer with the same R to have a similar delay in rise and fall.
 
-## NgspiceSky130 - Day 4 - CMOS Noise Margin robustness evaluation
+## E) Day 4 - CMOS Noise Margin robustness evaluation
+
 ### Static behavior evaluation – CMOS inverter robustness – Noise margin
 
-### 36-L1 Introduction to noise margin
+### L1: Introduction to noise margin
+- Noise margin is an important aspect of the device; it might create a disturbance in logic levels.
+
+- Considering the Ideal Inverter, we will have the following response, as shown in the image.
+- When Vin = 0(0), Vout = Vdd(1)
+- Vin = Vdd(1), Vout = 0(0)
+- Switching happens at Vdd
+- slope = Vdd/0 = Infinite
+
+<img width="586" height="535" alt="image" src="https://github.com/user-attachments/assets/e3ffcb5f-c846-483a-89fb-508675d42852" />
+
+- In a real device, there is a finite slope due to finite resistance and parasitic capacitance.
+- VOH Output High Voltage = Maximum output voltage (near VDD)
+- VOL Output Low Voltage = Minimum output voltage (near 0 V)
+
+- Maximum input low is still recognized as Logic low => 0 ≤ Vin ​≤ VIL
+- Minimum input high is still recognized as Logic high => VIH​ ≤ Vin​ ≤ VDD
+- We have a Transition region between VIL and VIH
+​
+<img width="900" height="500" alt="image" src="https://github.com/user-attachments/assets/efd109df-7006-41e3-9f16-393cb08a4a9f" />
+
+- The steeper the slope of the voltage transfer characteristic, the better the switching behavior and the higher the noise immunity; an ideal inverter has an infinite slope at the switching point, which provides the best noise rejection, whereas a practical inverter has a finite slope due to actual device effects, resulting in limited noise immunity.
+
+### L2: Noise margin voltage parameters
+- The input voltage is split into three sections by the CMOS inverter VTC: the logic 0 region, the transition region, and the logic 1 region.
+- Logic 0 is defined as any input voltage between 0 and VIL.
+- Logic 1 is defined as any input voltage between VIH and VDD.
+- There is an indeterminate transition zone between VIL and VIH.
+- The output becomes VOL (output low) when the input is in the logic 1 region.
+- The output becomes VOH (output high) when the input is in the logic 0 region.
+- Because of device non-idealities, VOL is not precisely 0 V, and VOH is not precisely VDD in real circuits. For logic gates to cascade properly, VOL < VIL and VOH > VIH.
+
+<img width="900" height="450" alt="image" src="https://github.com/user-attachments/assets/8a0fab3d-1707-45cb-a479-1572569e9aa3" />
+
+- These requirements guarantee that logic 0 and logic 1 are successfully detected in the subsequent stage. Due to parasitic capacitance and limited resistance, the realistic VTC curve is smooth rather than vertical.
+
+- Because an increase in input results in a reduction in output, the transition region's slope is negative. Near the switching point, the slope's magnitude is almost -1.
+
+### L3: Noise margin equation and summary
+- Plotting the 1D line graph for the Noise Margin.
+- Plotting these voltage levels reveals two significant regions:
+
+1. Noise Margin High (NMH)
+- It is the voltage difference between VOH and VIH.
+- NMH = VOH−VIH
+- When the signal is at logic 1, it indicates the maximum acceptable noise level. At the input or output, any voltage within this range will still be recognized as a logic 1.
+
+2. Noise Margin Low (NML)
+- It is the voltage difference between VIL and VOL.
+- NML = VIL − VOL
+- When the signal is at logic 0, it indicates the maximum acceptable noise level. Logic 0 will still be recognized for any voltage falling inside this range.
+
+3. Undefined region
+- The undefined region is the area between VIL and VIH. It interprets any voltage occurring inside this range as either logic 0 or logic 1.
+- Uncertainty arises when signals or glitches enter this area. When operating a circuit properly, this area must be avoided.
+
+<img width="1131" height="567" alt="image" src="https://github.com/user-attachments/assets/4594407e-24c2-4402-82b7-a11286bdee3f" />
+
+- Noise margin gives the idea of tolerance in the circuit. It helps determine whether a bump or glitch is safe or unsafe.
+
+<img width="1167" height="734" alt="image" src="https://github.com/user-attachments/assets/fb8905cf-4ce0-4f73-adc2-6dd3bb278202" />
+
+### L4: Noise margin variation with respect to PMOS width
+To evaluate noise margins through PMOS/NMOS size scaling, CMOS inverter noise margins are analyzed using Spice simulations.
+
+<img width="1133" height="384" alt="image" src="https://github.com/user-attachments/assets/8ab77fb5-0df0-44aa-9c8a-3c42b2a9bc1e" />
+
+- Checking the slope of the DC transfer curve and then defining the range of voltages, which are noise margins for the respective device.
+
+- Because of NMOS, increasing PMOS size increases the noise margin high from 0.3V → 0.42V at 5x w/L of NMOS, but there is a slight decrease in the noise margin low beyond 3x w/L of NMOS.
+
+<img width="900" height="780" alt="image" src="https://github.com/user-attachments/assets/038f62c5-f116-4b83-b709-0f351d9369bf" />
+<img width="900" height="780" alt="image" src="https://github.com/user-attachments/assets/8706211f-f63f-499b-a29c-4a55b3dbce23" />
+
+- Fabrication variations cause noise margin changes in digital circuits.
+
+- Therefore, CMOS inverters demonstrate robustness against noise within optimal size ratios, making them suitable for digital design where minor variations (±5%) in margins do not compromise functionality.
+
+### L5: Sky130 Noise margin labs
+ngspice simulations of the noise margin with a load of 50 fF at out.
+- Here I got noise margin
+- High = VIH - VOH = 1.7 - 0.98 = 0.72
+- Low = VIL - VOL = 0.78 - 0.11 = 0.67
+
+<img width="500" height="460" alt="image" src="https://github.com/user-attachments/assets/27309a68-1432-4834-8c75-b1db67b1c274" />
+
+## F) Day 5 - CMOS power supply and device variation robustness evaluation
+
+### Static behavior evaluation – CMOS inverter robustness – Power supply variation
+### L1: Smart SPICE simulation for power supply variations
+- In this part, we have discussed creating the netlist for evaluating CMOS inverter robustness under power supply scaling.
+- SPICE variable loops are used to sweep the supply voltage in 0.5V increments (2.5V → 0.5V).
+- To account for variations in mobility and preserve switching symmetry, we keep PMOS broader than NMOS.
+
+<img width="1000" height="575" alt="image" src="https://github.com/user-attachments/assets/29c13cd5-c174-451b-86c6-b994dd284241" />
+
+### L2: Advantages and disadvantages using low supply voltage
