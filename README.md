@@ -483,3 +483,76 @@ ngspice simulations of the noise margin with a load of 50 fF at out.
 <img width="1000" height="575" alt="image" src="https://github.com/user-attachments/assets/29c13cd5-c174-451b-86c6-b994dd284241" />
 
 ### L2: Advantages and disadvantages using low supply voltage
+
+Advantages
+- We can get 50% improvement in gain for a 0.5V device as compared to 2.5V.
+- Energy needed for charging and discharging is 90% less for a 0.5V device with respect to 2.5V device.
+
+<img width="1000" height="500" alt="Screenshot 2026-02-25 155507" src="https://github.com/user-attachments/assets/28d2fd76-3f7c-4f40-aafa-88e83789bbd0" />
+
+Disadvantage
+- Generally, we think that a lower power consumption and a higher gain device perform better, but that device is not getting enough time to fully charge and discharge, resulting in a longer time as compared to a 2.5V device.
+
+| 2.5V device | 0.5V device |
+|---|---|
+| <img width="400" height="320" alt="Screenshot 2026-02-25 160254" src="https://github.com/user-attachments/assets/fc080aa7-f8fe-4d73-886f-c53496730db7" /> | <img width="400" height="320" alt="Screenshot 2026-02-25 160414" src="https://github.com/user-attachments/assets/b7438da8-503a-48c0-a393-5fe69c846a50" /> |
+
+### L3: Sky130 Supply Variation Labs
+- Spice simulation is done for analyzing the gain with respect to the width of the device.
+
+- For V=1.8V, Gain = 8.33
+- For V=1.6V, Gain = 8.43
+- For V=1.4V, Gain = 9.06
+- For V=1.2V, Gain = 9.82
+- For V=1V, Gain = 9.02
+- For V=0.8V, Gain = 8.46
+
+<img width="500" height="490" alt="Screenshot 2026-02-25 161249" src="https://github.com/user-attachments/assets/1eb1ddaa-a065-41a0-bbd5-ded061a17137" />
+
+### Static behavior evaluation – CMOS inverter robustness – Device variation
+### L1: Sources of variation – Etching process
+- Transistor geometry, including gate length (L) and width (W), is defined by the crucial fab process of etching.
+
+- The MOSFET drain current is directly impacted by the w/L ratio.
+
+- Well, depending on the arrangement around, variations may vary from one chip to another.
+<img width="900" height="300" alt="Screenshot 2026-02-25 164609" src="https://github.com/user-attachments/assets/013ae379-c4fa-4218-baeb-f72e7f3073f2" />
+
+- The inverter's switching latency is modified by variations in drain current. And because of their homogeneous adjacent structures, central inverters frequently exhibit more periodic and similar distortions, whereas edge inverters generate uneven fluctuations due to different nearby layout architectures.
+
+- The timing and reliability of larger circuits are affected by variations that accumulate along inverter chains.
+
+<img width="1000" height="525" alt="Screenshot 2026-02-25 164944" src="https://github.com/user-attachments/assets/cdfaa2ab-f844-4cfc-ab0f-845b0f1ac4a3" />
+
+### L2: Sources of variation – oxide thickness
+- Similar to etching, here in oxidation, it also varies from the ideal case due to the real nature of Fab.
+
+| Ideal | Real |
+|---|---|
+|<img width="538" height="157" alt="Screenshot 2026-02-25 170306" src="https://github.com/user-attachments/assets/ed45bd9b-295b-4298-a5da-8184fdb7f133" /> | <img width="531" height="133" alt="Screenshot 2026-02-25 170406" src="https://github.com/user-attachments/assets/c42ce779-7914-4330-afef-119a55ad3c38" />|
+
+- Here, too, there is a similar variation in central COMS devices and uneven variation in oxide thickness due to different nearby layout architectures.
+
+- Eventually, Id is dependent on Cox, which is dependent on oxide thickness(tox), resulting in a change of Id, which might not be acceptable.
+
+<img width="1281" height="152" alt="Screenshot 2026-02-25 170701" src="https://github.com/user-attachments/assets/07b65f3c-6ab9-45ac-85f6-cd2f06d06f25" />
+
+### L3: Smart SPICE simulation for device variations
+- Now sweeping NMOS and PMOS from weak NMOS to strong NMOS. Here we are checking the robustness of the CMOS inverter.
+
+<img width="1722" height="304" alt="Screenshot 2026-02-25 172440" src="https://github.com/user-attachments/assets/f44ffba3-8167-4836-aaae-34eaac1ff4d2" />
+
+- Analysing the noise margins, we can see that whenever there is a Logic High needed, there is enough margin to capture the noise. It doesn't change much with the w and L variation. 
+
+<img width="900" height="700" alt="Screenshot 2026-02-25 172811" src="https://github.com/user-attachments/assets/3b154d31-774f-49c0-8dfc-9b78e28298c0" />
+
+
+### L4: Conclusion
+- The switching threshold varied by 1.2V (2.0V to 1.4V) but remained within acceptable limits relative to the supply voltage.
+- Noise margins of 400mV (strong PMOS) and 300mV (weak PMOS) are sufficient to filter supply noise and ground bounce.
+- Inverter behavior preserved across extreme device variations (strong-to-weak PMOS/NMOS), ensuring reliable logic functionality.
+
+<img width="900" height="700" alt="image" src="https://github.com/user-attachments/assets/c94bb4c7-012e-4a30-a01d-8be0a60ef70f" />
+
+<img width="900" height="700" alt="Screenshot 2026-02-25 173345" src="https://github.com/user-attachments/assets/ec434d04-b79d-496c-8dc0-171e9ebd3f15" />
+
